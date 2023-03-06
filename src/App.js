@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
+import NewCard from './components/NewCard';
 
 class App extends React.Component {
   state = {
@@ -70,7 +71,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      cards } = this.state;
+    } = this.state;
 
     event.preventDefault();
     const cardToAdd = {
@@ -94,7 +95,14 @@ class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
     }));
-    console.log(cards);
+    // console.log(cards);
+  };
+
+  removeCard = (cardIndex) => {
+    this.setState((prevState) => ({
+      cards: prevState.cards.filter((_card, index) => index !== cardIndex),
+    }));
+    console.log('cartaRemovida');
   };
 
   render() {
@@ -144,8 +152,8 @@ class App extends React.Component {
         <section>
           <h2>TODAS AS CARTAS</h2>
           {
-            cards.map((card) => (
-              <Card
+            cards.map((card, index) => (
+              <NewCard
                 key={ card.cardName }
                 cardName={ card.cardName }
                 cardDescription={ card.cardDescription }
@@ -155,6 +163,7 @@ class App extends React.Component {
                 cardImage={ card.cardImage }
                 cardRare={ card.cardRare }
                 cardTrunfo={ card.cardTrunfo }
+                cardRemove={ () => this.removeCard(index) }
               />
             ))
           }
