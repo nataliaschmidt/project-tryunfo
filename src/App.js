@@ -6,17 +6,15 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '',
-    cardAttr2: '',
-    cardAttr3: '',
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    cards: [],
   };
-  // Campos nome, descrição, imagem e raridade devem conter alguma informação
-  // Soma do valor dos 3 atributos não pode ser maior do que 210
-  // Cada um dos 3 atributos pode ter no máximo 90 pontos e não podem receber valores negaticos
 
   validadeTextForm = () => {
     const { cardName, cardDescription, cardImage, cardRare } = this.state;
@@ -41,7 +39,7 @@ class App extends React.Component {
 
   validateForm = () => {
     const validateAttr = this.validateSumAndMinMaxAttr();
-    console.log(validateAttr);
+    // console.log(validateAttr);
     const validateText = this.validadeTextForm();
     if (validateAttr && validateText) {
       this.setState({
@@ -64,8 +62,39 @@ class App extends React.Component {
   };
 
   onSaveButtonClick = (event) => {
+    const { cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      cards } = this.state;
+
     event.preventDefault();
-    console.log('teste onSaveButtonClick');
+    const cardToAdd = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+
+    this.setState((currentState) => ({
+      cards: [cardToAdd, ...currentState.cards],
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: 'normal',
+    }));
+    console.log(cards);
   };
 
   render() {
