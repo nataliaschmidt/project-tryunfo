@@ -1,8 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Form extends Component {
   render() {
     const raritys = ['normal', 'raro', 'muito raro'];
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      hasTrunfo,
+      isSaveButtonDisabled,
+      onInputChange,
+      onSaveButtonClick,
+    } = this.props;
+    // console.log(this.props);
 
     return (
       <form>
@@ -14,9 +30,8 @@ export default class Form extends Component {
             id="cardName"
             type="text"
             name="cardName"
-            required
-            // value={}
-            // onChange={}
+            value={ cardName }
+            onChange={ onInputChange }
           />
         </label>
 
@@ -26,9 +41,8 @@ export default class Form extends Component {
             data-testid="description-input"
             id="cardDescription"
             name="cardDescription"
-            required
-            // value={}
-            // onChange={}
+            value={ cardDescription }
+            onChange={ onInputChange }
           />
         </label>
 
@@ -39,9 +53,8 @@ export default class Form extends Component {
             id="cardAttr1"
             type="number"
             name="cardAttr1"
-            required
-            // value={}
-            // onChange={}
+            value={ cardAttr1 }
+            onChange={ onInputChange }
           />
         </label>
 
@@ -52,9 +65,8 @@ export default class Form extends Component {
             id="cardAttr2"
             type="number"
             name="cardAttr2"
-            required
-            // value={}
-            // onChange={}
+            value={ cardAttr2 }
+            onChange={ onInputChange }
           />
         </label>
 
@@ -65,9 +77,8 @@ export default class Form extends Component {
             id="cardAttr3"
             type="number"
             name="cardAttr3"
-            required
-            // value={}
-            // onChange={}
+            value={ cardAttr3 }
+            onChange={ onInputChange }
           />
         </label>
 
@@ -78,9 +89,8 @@ export default class Form extends Component {
             id="cardImage"
             type="text"
             name="cardImage"
-            required
-            // value={}
-            // onChange={}
+            value={ cardImage }
+            onChange={ onInputChange }
           />
         </label>
 
@@ -90,9 +100,8 @@ export default class Form extends Component {
             data-testid="rare-input"
             id="cardRare"
             name="cardRare"
-            required
-            // value={}
-            // onChange={}
+            value={ cardRare }
+            onChange={ onInputChange }
           >
             {
               raritys.map((rarity) => (
@@ -109,15 +118,15 @@ export default class Form extends Component {
             id="cardTrunfo"
             type="checkbox"
             name="cardTrunfo"
-            // value={}
-            // onChange={}
+            value={ cardTrunfo }
+            onChange={ onInputChange }
           />
         </label>
         <button
           data-testid="save-button"
           type="submit"
-          // disabled={}
-          // onChange={}
+          disabled={ isSaveButtonDisabled }
+          onChange={ onSaveButtonClick }
         >
           Salvar
 
@@ -126,3 +135,18 @@ export default class Form extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  cardName: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.string.isRequired,
+  cardAttr2: PropTypes.string.isRequired,
+  cardAttr3: PropTypes.string.isRequired,
+  cardImage: PropTypes.string.isRequired,
+  cardRare: PropTypes.string.isRequired,
+  cardTrunfo: PropTypes.bool.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
+  isSaveButtonDisabled: PropTypes.bool.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onSaveButtonClick: PropTypes.func.isRequired,
+};
