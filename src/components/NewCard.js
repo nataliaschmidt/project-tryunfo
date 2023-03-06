@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class NewCard extends Component {
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const {
       cardName,
       cardDescription,
@@ -28,7 +28,7 @@ export default class NewCard extends Component {
         { cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p> }
         <button
           data-testid="delete-button"
-          type="button"
+          type="submit"
           onClick={ cardRemove }
         >
           Excluir

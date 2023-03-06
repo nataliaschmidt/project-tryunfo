@@ -13,6 +13,7 @@ class App extends React.Component {
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
+    hasTrunfo: false,
     isSaveButtonDisabled: true,
     cards: [],
   };
@@ -62,6 +63,18 @@ class App extends React.Component {
     }, this.validateForm);
   };
 
+  verifyTrunfo = () => {
+    // criado botão para testar a função
+    const { cards, hasTrunfo } = this.state;
+    const isTrunfo = cards.some((card) => card.cardTrunfo); // verificação funcionando, retorna true ou false
+    console.log(isTrunfo);
+    this.setState({
+      hasTrunfo: isTrunfo,
+    }, () => {
+      console.log(hasTrunfo);
+    });
+  };
+
   onSaveButtonClick = (event) => {
     const { cardName,
       cardDescription,
@@ -94,15 +107,18 @@ class App extends React.Component {
       cardAttr3: '0',
       cardImage: '',
       cardRare: 'normal',
-    }));
-    // console.log(cards);
+    }), () => {
+      this.verifyTrunfo();
+    });
   };
 
   removeCard = (cardIndex) => {
     this.setState((prevState) => ({
       cards: prevState.cards.filter((_card, index) => index !== cardIndex),
-    }));
-    console.log('cartaRemovida');
+    }), () => {
+      this.verifyTrunfo();
+    });
+    // console.log('cartaRemovida');
   };
 
   render() {
@@ -117,6 +133,7 @@ class App extends React.Component {
       cardRare,
       isSaveButtonDisabled,
       cards,
+      hasTrunfo,
     } = this.state;
 
     return (
@@ -132,6 +149,7 @@ class App extends React.Component {
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }
             isSaveButtonDisabled={ isSaveButtonDisabled }
+            hasTrunfo={ hasTrunfo }
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
           />
@@ -168,6 +186,7 @@ class App extends React.Component {
             ))
           }
         </section>
+        <button onClick={ this.verifyTrunfo }>verifica trunfo</button>
       </>
     );
   }
