@@ -6,7 +6,7 @@ export default class Filters extends Component {
   state = {
     filteredName: '',
     filteredRarity: 'todas', // iniciando o valor com todas as cartas
-    filteredTrunfo: null,
+    filteredTrunfo: false,
   };
 
   handleChange = ({ target }) => {
