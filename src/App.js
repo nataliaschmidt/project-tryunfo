@@ -1,7 +1,8 @@
 import React from 'react';
 import Card from './components/Card';
+import Filters from './components/Filters';
 import Form from './components/Form';
-import NewCard from './components/NewCard';
+// import NewCard from './components/NewCard';
 
 class App extends React.Component {
   state = {
@@ -65,13 +66,13 @@ class App extends React.Component {
 
   verifyTrunfo = () => {
     // criado botão para testar a função
-    const { cards, hasTrunfo } = this.state;
+    const { cards } = this.state;
     const isTrunfo = cards.some((card) => card.cardTrunfo); // verificação funcionando, retorna true ou false
-    console.log(isTrunfo);
+    // console.log(isTrunfo);
     this.setState({
       hasTrunfo: isTrunfo,
     }, () => {
-      console.log(hasTrunfo);
+    //  console.log(hasTrunfo);
     });
   };
 
@@ -109,6 +110,7 @@ class App extends React.Component {
       cardRare: 'normal',
     }), () => {
       this.verifyTrunfo();
+      // console.log(this.state.cards);
     });
   };
 
@@ -117,8 +119,8 @@ class App extends React.Component {
       cards: prevState.cards.filter((_card, index) => index !== cardIndex),
     }), () => {
       this.verifyTrunfo();
+      // console.log(this.state.cards);
     });
-    // console.log('cartaRemovida');
   };
 
   render() {
@@ -169,6 +171,12 @@ class App extends React.Component {
         </section>
         <section>
           <h2>TODAS AS CARTAS</h2>
+          <Filters
+            cards={ cards }
+            cardRemove={ this.removeCard }
+          />
+        </section>
+        {/* <section>
           {
             cards.map((card, index) => (
               <NewCard
@@ -185,8 +193,7 @@ class App extends React.Component {
               />
             ))
           }
-        </section>
-        <button onClick={ this.verifyTrunfo }>verifica trunfo</button>
+        </section> */}
       </>
     );
   }
