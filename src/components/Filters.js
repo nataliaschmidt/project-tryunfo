@@ -5,46 +5,63 @@ import NewCard from './NewCard';
 export default class Filters extends Component {
   state = {
     filteredName: '',
+    filteredRarity: 'todas', // iniciando o valor com todas as cartas
+    filteredTrunfo: null,
   };
 
-  handleSearchChange = ({ target }) => {
-    const { value } = target;
+  handleChange = ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
-      filteredName: value,
+      [name]: value,
     });
   };
 
   render() {
     const { cards, cardRemove } = this.props;
-    const { filteredName } = this.state;
+    const { filteredName, filteredRarity, filteredTrunfo } = this.state;
     const raritys = ['todas', 'normal', 'raro', 'muito raro'];
-    const cardsNameFiltered = cards.filter((card) => {
-      const { cardName } = card;
-      return filteredName && cardName.includes(filteredName);
-    });
+
+    let cardsToRender = cards;
+
+    if (filteredName !== '') {
+      cardsToRender = cardsToRender
+        .filter((card) => card.cardName.includes(filteredName));
+    }
+
+    if (filteredRarity !== 'todas') {
+      cardsToRender = cardsToRender.filter((card) => card.cardRare === filteredRarity);
+    }
+
+    if (filteredTrunfo) {
+      cardsToRender = cardsToRender.filter((card) => card.cardTrunfo);
+    }
 
     return (
       <>
+        <h3>Filtros</h3>
         <label htmlFor="filteredName">
-          Filtrar pelo nome da carta:
+          Nome da carta:
           <input
             data-testid="name-filter"
             id="filteredName"
             type="text"
             name="filteredName"
+            disabled={ filteredTrunfo }
             value={ filteredName }
-            onChange={ this.handleSearchChange }
+            onChange={ this.handleChange }
           />
         </label>
 
         <label htmlFor="filteredRarity">
-          Filtrar pela raridade:
+          Raridade:
           <select
             data-testid="rare-filter"
             id="filteredRarity"
             name="filteredRarity"
-            // value={  }
-            // onChange={  }
+            disabled={ filteredTrunfo }
+            value={ filteredRarity }
+            onChange={ this.handleChange }
           >
             {
               raritys.map((rarity) => (
@@ -61,40 +78,25 @@ export default class Filters extends Component {
             id="filteredTrunfo"
             type="checkbox"
             name="filteredTrunfo"
-            // checked={  }
-            // onChange={  }
+            checked={ filteredTrunfo }
+            onChange={ this.handleChange }
           />
         </label>
 
-        {filteredName !== ''
-          ? cardsNameFiltered.map((cardFiltered, index) => (
-            <NewCard
-              key={ cardFiltered.cardName }
-              cardName={ cardFiltered.cardName }
-              cardDescription={ cardFiltered.cardDescription }
-              cardAttr1={ cardFiltered.cardAttr1 }
-              cardAttr2={ cardFiltered.cardAttr2 }
-              cardAttr3={ cardFiltered.cardAttr3 }
-              cardImage={ cardFiltered.cardImage }
-              cardRare={ cardFiltered.cardRare }
-              cardTrunfo={ cardFiltered.cardTrunfo }
-              cardRemove={ () => cardRemove(index) }
-            />
-          ))
-          : cards.map((cardFiltered, index) => (
-            <NewCard
-              key={ cardFiltered.cardName }
-              cardName={ cardFiltered.cardName }
-              cardDescription={ cardFiltered.cardDescription }
-              cardAttr1={ cardFiltered.cardAttr1 }
-              cardAttr2={ cardFiltered.cardAttr2 }
-              cardAttr3={ cardFiltered.cardAttr3 }
-              cardImage={ cardFiltered.cardImage }
-              cardRare={ cardFiltered.cardRare }
-              cardTrunfo={ cardFiltered.cardTrunfo }
-              cardRemove={ () => cardRemove(index) }
-            />
-          )) }
+        {cardsToRender.map((card, index) => (
+          <NewCard
+            key={ card.cardName }
+            cardName={ card.cardName }
+            cardDescription={ card.cardDescription }
+            cardAttr1={ card.cardAttr1 }
+            cardAttr2={ card.cardAttr2 }
+            cardAttr3={ card.cardAttr3 }
+            cardImage={ card.cardImage }
+            cardRare={ card.cardRare }
+            cardTrunfo={ card.cardTrunfo }
+            cardRemove={ () => cardRemove(index) }
+          />
+        ))}
       </>
     );
   }

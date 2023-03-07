@@ -67,10 +67,11 @@ class App extends React.Component {
   verifyTrunfo = () => {
     // criado botão para testar a função
     const { cards } = this.state;
-    const isTrunfo = cards.some((card) => card.cardTrunfo); // verificação funcionando, retorna true ou false
+    const isTrunfo = cards.some((card) => card.cardTrunfo);
     // console.log(isTrunfo);
     this.setState({
       hasTrunfo: isTrunfo,
+      cardTrunfo: false, // voltando a ser falso para que ado adicionar a carta SP a primeira vez ele não fique sempre como true e adicone todas as cartas como SP.
     }, () => {
     //  console.log(hasTrunfo);
     });
@@ -100,7 +101,7 @@ class App extends React.Component {
     };
 
     this.setState((currentState) => ({
-      cards: [cardToAdd, ...currentState.cards],
+      cards: [...currentState.cards, cardToAdd],
       cardName: '',
       cardDescription: '',
       cardAttr1: '0',
@@ -176,24 +177,6 @@ class App extends React.Component {
             cardRemove={ this.removeCard }
           />
         </section>
-        {/* <section>
-          {
-            cards.map((card, index) => (
-              <NewCard
-                key={ card.cardName }
-                cardName={ card.cardName }
-                cardDescription={ card.cardDescription }
-                cardAttr1={ card.cardAttr1 }
-                cardAttr2={ card.cardAttr2 }
-                cardAttr3={ card.cardAttr3 }
-                cardImage={ card.cardImage }
-                cardRare={ card.cardRare }
-                cardTrunfo={ card.cardTrunfo }
-                cardRemove={ () => this.removeCard(index) }
-              />
-            ))
-          }
-        </section> */}
       </>
     );
   }
