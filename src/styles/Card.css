@@ -1,0 +1,130 @@
+.container-allCard {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 650px;
+    padding: 20px;
+    font-size: 2em;
+    margin-top: 40px;
+    background: linear-gradient(45deg, #03045e, #0077b6, #90e0ef, #caf0f8);
+    background-size: 800% 800%;
+    animation: animationBg 5s ease infinite;
+    border-radius: 15px;
+    box-shadow: 15px 15px 10px 2px rgba(119, 119, 119, 0.5),
+        -10px -10px 10px 2px rgba(255, 255, 255, 0.5),
+        inset 15px 15px 20px 2px rgba(119, 119, 119, 0.5),
+        inset -8px -8px 20px 2px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes animationBg {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.container-card {
+    display: flex;
+    flex-direction: column;
+    height: 650px;
+    /* background-color: rgb(255, 255, 255);
+    border-radius: 15px; */
+}
+
+.container-name {
+    background-color: #012a4a;
+    height: 50px;
+    text-align: center;
+    border-radius: 60px 0px 0px 0px;
+    margin-bottom: 10px;
+}
+
+.container-name h1 {
+    color: white;
+}
+
+.container-img {
+    height:225px ;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 60px 0px 0px 60px;
+    border: 2px solid #012a4a;
+}
+
+.container-description {
+    height: 100px;
+    background-color:#012a4a;
+    margin-top: 10px;
+    border-radius: 80px 0px 0px 0px;
+}
+
+.container-description p {
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: 20px;
+}
+
+.container-attr {
+    height: 225px;
+    background-color: #012a4a;
+    border-radius: 0px 0px 0px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+p {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+}
+
+.container-attr p {
+    background-color: white;
+    padding: 8px 20px;
+font-size: 0.7em;
+    color: #012a4a;
+    width: max-content;
+    border-radius: 15px;
+}
+
+#rare-card {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    align-self: flex-end;
+}
+
+#super-trunfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(135deg, #007ea7, #1b4965);
+    color: white;
+    width: 100px;
+    height: 80px;
+    padding: 10px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 22px;
+    border: 2px solid #caad09;
+    box-shadow: 5px 5px 10px 2px rgba(119, 119, 119, 0.5),
+        -2px -2px 5px 2px rgba(255, 255, 255, 0.5),
+        inset 5px 5px 10px 2px rgba(119, 119, 119, 0.5),
+        inset -2px -2px 5px 2px rgba(255, 255, 255, 0.5);
+    animation: rotate 2s linear;
+    position: relative;
+    bottom: 400px;
+    left: 260px;
+}
+@keyframes rotate {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}

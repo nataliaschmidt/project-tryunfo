@@ -20,7 +20,7 @@ export default class Filters extends Component {
   render() {
     const { cards, cardRemove } = this.props;
     const { filteredName, filteredRarity, filteredTrunfo } = this.state;
-    const raritys = ['todas', 'normal', 'raro', 'muito raro'];
+    const raritys = ['Todas', 'Normal', 'Raro', 'Muito raro'];
 
     let cardsToRender = cards;
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../styles/Card.css';
 
 export default class Card extends Component {
   render() {
@@ -15,15 +16,31 @@ export default class Card extends Component {
     } = this.props;
     // console.log(this.props);
     return (
-      <div>
-        <h1 data-testid="name-card">{cardName}</h1>
-        <img data-testid="image-card" src={ cardImage } alt={ cardName } />
-        <p data-testid="description-card">{cardDescription}</p>
-        <p data-testid="attr1-card">{cardAttr1}</p>
-        <p data-testid="attr2-card">{cardAttr2}</p>
-        <p data-testid="attr3-card">{cardAttr3}</p>
-        <p data-testid="rare-card">{cardRare}</p>
-        { cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p> }
+      <div className="container-allCard">
+        <div className="container-card">
+          <div className="container-text-img">
+            <div className="container-name">
+              <h1 data-testid="name-card">{cardName}</h1>
+            </div>
+            <div className="container-img">
+              {
+                cardImage
+            && <img data-testid="image-card" src={ cardImage } alt={ cardName } />
+              }
+            </div>
+          </div>
+          <div className="container-description">
+            <p data-testid="description-card">{`${cardDescription}`}</p>
+          </div>
+          <div className="container-attr">
+            { cardAttr1 && <p data-testid="attr1-card">{`Velocidade Média ----- ${cardAttr1}`}</p>}
+            {cardAttr2 && <p data-testid="attr2-card">{`Peso Médio ------------- ${cardAttr2}`}</p>}
+            {cardAttr3
+            && <p data-testid="attr3-card">{`Força --------------------- ${cardAttr3}`}</p>}
+            <p data-testid="rare-card" id="rare-card">{`${cardRare}`}</p>
+          </div>
+        </div>
+        { cardTrunfo && <span data-testid="trunfo-card" id="super-trunfo">Super Trunfo</span> }
       </div>
     );
   }

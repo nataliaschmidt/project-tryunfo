@@ -2,17 +2,18 @@ import React from 'react';
 import Card from './components/Card';
 import Filters from './components/Filters';
 import Form from './components/Form';
-// import NewCard from './components/NewCard';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '0',
-    cardAttr2: '0',
-    cardAttr3: '0',
+    cardAttr1: '',
+    cardAttr2: '',
+    cardAttr3: '',
     cardImage: '',
-    cardRare: 'normal',
+    cardRare: 'Normal',
     cardTrunfo: false,
     hasTrunfo: false,
     isSaveButtonDisabled: true,
@@ -104,9 +105,9 @@ class App extends React.Component {
       cards: [...currentState.cards, cardToAdd],
       cardName: '',
       cardDescription: '',
-      cardAttr1: '0',
-      cardAttr2: '0',
-      cardAttr3: '0',
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
       cardImage: '',
       cardRare: 'normal',
     }), () => {
@@ -141,35 +142,38 @@ class App extends React.Component {
 
     return (
       <>
-        <section>
-          <Form
-            cardName={ cardName }
-            cardDescription={ cardDescription }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
-            isSaveButtonDisabled={ isSaveButtonDisabled }
-            hasTrunfo={ hasTrunfo }
-            onInputChange={ this.onInputChange }
-            onSaveButtonClick={ this.onSaveButtonClick }
-          />
-        </section>
+        <div className="container-top">
+          <section className="container-form">
+            <Form
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+              isSaveButtonDisabled={ isSaveButtonDisabled }
+              hasTrunfo={ hasTrunfo }
+              onInputChange={ this.onInputChange }
+              onSaveButtonClick={ this.onSaveButtonClick }
+            />
+          </section>
 
-        <section>
-          <Card
-            cardName={ cardName }
-            cardDescription={ cardDescription }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
-          />
-        </section>
+          <section className="container-preview">
+            <Card
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+            />
+          </section>
+        </div>
+
         <section>
           <h2>TODAS AS CARTAS</h2>
           <Filters

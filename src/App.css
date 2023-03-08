@@ -1,0 +1,17 @@
+.container-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+    background-color: #E8E8E8;
+    flex-wrap: wrap;
+}
+
+.container-form{
+
+}
+
+.container-preview {
+
+}
