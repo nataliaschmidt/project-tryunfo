@@ -24,19 +24,15 @@ export default class Filters extends Component {
     const raritys = ['Todas', 'Normal', 'Raro', 'Muito raro'];
 
     let cardsToRender = cards;
-
     if (filteredName !== '') {
       cardsToRender = cardsToRender
         .filter((card) => card.cardName.toLowerCase()
           .includes(filteredName.toLowerCase()));
     }
+    console.log(cardsToRender);
 
     if (filteredRarity !== 'Todas') {
       cardsToRender = cardsToRender.filter((card) => card.cardRare === filteredRarity);
-    }
-
-    if (filteredRarity === 'Todas') {
-      cardsToRender = cards;
     }
 
     if (filteredTrunfo) {

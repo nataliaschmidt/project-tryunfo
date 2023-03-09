@@ -110,7 +110,7 @@ class App extends React.Component {
       cardAttr3: '0',
       cardImage: '',
       isSaveButtonDisabled: false,
-      cardRare: 'normal',
+      cardRare: 'Normal',
     }), () => {
       this.verifyTrunfo();
       // console.log(this.state.cards);
