@@ -1,0 +1,35 @@
+.filters {
+    text-align: center;
+    font-size: 3.5em;
+    height: 50px;
+    margin-bottom: 40px;
+}
+
+.container-filters {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 1.3em;
+  margin-right: 20px;
+}
+
+.container-filters .form-label {
+  display: flex;
+  height: 40px;
+}
+
+.container-filters input {
+    margin-left: 20px;
+}
+
+#filteredRarity {
+    margin-left: 20px;
+}
+
+.container-cards-deck {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}

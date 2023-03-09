@@ -1,36 +1,71 @@
 form {
+    border: 3px solid #E8E8E8;
+    border-radius: 40px;
+    box-shadow: 15px 15px 10px 2px rgba(119, 119, 119, 0.5),
+        -10px -10px 10px 2px rgba(255, 255, 255, 0.5),
+        inset 15px 15px 20px 2px rgba(119, 119, 119, 0.5),
+        inset -8px -8px 20px 2px rgba(255, 255, 255, 0.5);
     display: flex;
     flex-direction: column;
+    font-size: 1.3em;
     width: max-content;
     height: 770px;
     padding: 30px;
-    font-size: 1.3em;
     margin-top: 40px;
-    border-radius: 40px;
     margin-bottom: 20px;
-    border: 2px solid #E8E8E8;
-    box-shadow: 15px 15px 10px 2px rgba(119, 119, 119, 0.5),
-    -10px -10px 10px 2px rgba(255, 255, 255, 0.5),
-    inset 15px 15px 20px 2px rgba(119, 119, 119, 0.5),
-    inset -8px -8px 20px 2px rgba(255, 255, 255, 0.5);
 }
 
 form label, h1, div {
-  background-color: rgba(255, 255, 255, 0);
+    background-color: transparent;
 }
 
+form h1 {
+    font-size: 2.1em;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.381);
+}
+
+#has-trunfo {
+    color: #011502;
+    text-align: center;
+}
+
+/* Código do botão visto na página avancedev */
 form button {
+    position: relative;
     width: max-content;
     align-self: center;
-    background-color: #116aff;
-    padding: 10px 15px;
+    background-color: #dedddd;
+    padding: 10px 25px;
     border-radius: 15px;
-    color: white;
+    color: black;
     border: none;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow: hidden;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 form button:hover {
-background-color:#38618C;
+    background-color: #E8E8E8 ;
+}
+
+form button::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 0;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #caf0f8, #0077b6);
+    transition: 0.5s ease;
+    z-index: -1;
+    border-radius: 15px;
+}
+
+form button:hover::before {
+    width: 100%;
 }
 
 form button:active{

@@ -23,12 +23,12 @@ export default class Form extends Component {
     return (
       <form>
         <h1>ADICIONE UMA NOVA CARTA</h1>
-        <label htmlFor="cardName" className='form-label'>
+        <label htmlFor="cardName" className="form-label">
           Nome:
           <input
             data-testid="name-input"
             id="cardName"
-            className='form-control'
+            className="form-control"
             type="text"
             name="cardName"
             value={ cardName }
@@ -36,12 +36,12 @@ export default class Form extends Component {
           />
         </label>
 
-        <label htmlFor="cardImage" className='form-label'>
+        <label htmlFor="cardImage" className="form-label">
           Imagem:
           <input
             data-testid="image-input"
             id="cardImage"
-            className='form-control'
+            className="form-control"
             type="text"
             name="cardImage"
             value={ cardImage }
@@ -49,25 +49,24 @@ export default class Form extends Component {
           />
         </label>
 
-
-        <label htmlFor="cardDescription" className='form-label'>
+        <label htmlFor="cardDescription" className="form-label">
           Descrição:
           <input
             data-testid="description-input"
             id="cardDescription"
-            className='form-control'
+            className="form-control"
             name="cardDescription"
             value={ cardDescription }
             onChange={ onInputChange }
           />
         </label>
 
-        <label htmlFor="cardAttr1" className='form-label'>
+        <label htmlFor="cardAttr1" className="form-label">
           Velocidade Média:
           <input
             data-testid="attr1-input"
             id="cardAttr1"
-            className='form-control'
+            className="form-control"
             type="number"
             name="cardAttr1"
             value={ cardAttr1 }
@@ -75,12 +74,12 @@ export default class Form extends Component {
           />
         </label>
 
-        <label htmlFor="cardAttr2" className='form-label'>
+        <label htmlFor="cardAttr2" className="form-label">
           Peso Médio:
           <input
             data-testid="attr2-input"
             id="cardAttr2"
-            className='form-control'
+            className="form-control"
             type="number"
             name="cardAttr2"
             value={ cardAttr2 }
@@ -88,12 +87,12 @@ export default class Form extends Component {
           />
         </label>
 
-        <label htmlFor="cardAttr3" className='form-label'>
+        <label htmlFor="cardAttr3" className="form-label">
           Força:
           <input
             data-testid="attr3-input"
             id="cardAttr3"
-            className='form-control'
+            className="form-control"
             type="number"
             name="cardAttr3"
             value={ cardAttr3 }
@@ -101,12 +100,12 @@ export default class Form extends Component {
           />
         </label>
 
-        <label htmlFor="cardRare" className='form-label'>
+        <label htmlFor="cardRare" className="form-label">
           Raridade:
           <select
             data-testid="rare-input"
             id="cardRare"
-            className='form-control'
+            className="form-control"
             name="cardRare"
             value={ cardRare }
             onChange={ onInputChange }
@@ -118,10 +117,10 @@ export default class Form extends Component {
             }
           </select>
         </label>
-        { hasTrunfo ? <p>Você já tem um Super Trunfo em seu baralho</p>
+        { hasTrunfo ? <p id="has-trunfo">Você já tem um Super Trunfo em seu baralho!</p>
           : (
-            <div className='form-check form-switch' >
-              <label htmlFor="cardTrunfo" className='form-label'>
+            <div className="form-check form-switch">
+              <label htmlFor="cardTrunfo" className="form-label">
                 Super Trunfo
                 <input
                   data-testid="trunfo-input"

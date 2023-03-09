@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NewCard from './NewCard';
+import '../styles/Filters.css';
 
 export default class Filters extends Component {
   state = {
     filteredName: '',
-    filteredRarity: 'todas', // iniciando o valor com todas as cartas
+    filteredRarity: 'Todas',
     filteredTrunfo: false,
   };
 
@@ -26,11 +27,16 @@ export default class Filters extends Component {
 
     if (filteredName !== '') {
       cardsToRender = cardsToRender
-        .filter((card) => card.cardName.includes(filteredName));
+        .filter((card) => card.cardName.toLowerCase()
+          .includes(filteredName.toLowerCase()));
     }
 
-    if (filteredRarity !== 'todas') {
+    if (filteredRarity !== 'Todas') {
       cardsToRender = cardsToRender.filter((card) => card.cardRare === filteredRarity);
+    }
+
+    if (filteredRarity === 'Todas') {
+      cardsToRender = cards;
     }
 
     if (filteredTrunfo) {
@@ -39,64 +45,76 @@ export default class Filters extends Component {
 
     return (
       <>
-        <h3>Filtros</h3>
-        <label htmlFor="filteredName">
-          Nome da carta:
-          <input
-            data-testid="name-filter"
-            id="filteredName"
-            type="text"
-            name="filteredName"
-            disabled={ filteredTrunfo }
-            value={ filteredName }
-            onChange={ this.handleChange }
-          />
-        </label>
+        <h2 className="filters">Filtros</h2>
+        <div className="container-filters">
+          <div className="container-input-name">
+            <label htmlFor="filteredName" className="form-label">
+              Nome:
+              <input
+                data-testid="name-filter"
+                id="filteredName"
+                className="form-control"
+                type="text"
+                name="filteredName"
+                disabled={ filteredTrunfo }
+                value={ filteredName }
+                onChange={ this.handleChange }
+              />
+            </label>
+          </div>
 
-        <label htmlFor="filteredRarity">
-          Raridade:
-          <select
-            data-testid="rare-filter"
-            id="filteredRarity"
-            name="filteredRarity"
-            disabled={ filteredTrunfo }
-            value={ filteredRarity }
-            onChange={ this.handleChange }
-          >
-            {
-              raritys.map((rarity) => (
-                <option key={ rarity }>{rarity}</option>
-              ))
-            }
-          </select>
-        </label>
+          <div className="container-input-rarity">
+            <label htmlFor="filteredRarity" className="form-label">
+              Raridade:
+              <select
+                data-testid="rare-filter"
+                id="filteredRarity"
+                className="form-select"
+                name="filteredRarity"
+                disabled={ filteredTrunfo }
+                value={ filteredRarity }
+                onChange={ this.handleChange }
+              >
+                {
+                  raritys.map((rarity) => (
+                    <option key={ rarity }>{rarity}</option>
+                  ))
+                }
+              </select>
+            </label>
+          </div>
 
-        <label htmlFor="filteredTrunfo">
-          Super Trunfo
-          <input
-            data-testid="trunfo-filter"
-            id="filteredTrunfo"
-            type="checkbox"
-            name="filteredTrunfo"
-            checked={ filteredTrunfo }
-            onChange={ this.handleChange }
-          />
-        </label>
-
-        {cardsToRender.map((card, index) => (
-          <NewCard
-            key={ card.cardName }
-            cardName={ card.cardName }
-            cardDescription={ card.cardDescription }
-            cardAttr1={ card.cardAttr1 }
-            cardAttr2={ card.cardAttr2 }
-            cardAttr3={ card.cardAttr3 }
-            cardImage={ card.cardImage }
-            cardRare={ card.cardRare }
-            cardTrunfo={ card.cardTrunfo }
-            cardRemove={ () => cardRemove(index) }
-          />
-        ))}
+          <div className="container-input-check">
+            <label htmlFor="filteredTrunfo" className="form-label">
+              Super Trunfo
+              <input
+                data-testid="trunfo-filter"
+                id="filteredTrunfo"
+                className="form-check-input"
+                type="checkbox"
+                name="filteredTrunfo"
+                checked={ filteredTrunfo }
+                onChange={ this.handleChange }
+              />
+            </label>
+          </div>
+        </div>
+        <div className="container-cards-deck">
+          {cardsToRender.map((card) => (
+            <NewCard
+              key={ card.cardName }
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ card.cardAttr1 }
+              cardAttr2={ card.cardAttr2 }
+              cardAttr3={ card.cardAttr3 }
+              cardImage={ card.cardImage }
+              cardRare={ card.cardRare }
+              cardTrunfo={ card.cardTrunfo }
+              cardRemove={ () => cardRemove(card.cardName) }
+            />
+          ))}
+        </div>
       </>
     );
   }

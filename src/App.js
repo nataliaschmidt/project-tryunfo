@@ -9,9 +9,9 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '',
-    cardAttr2: '',
-    cardAttr3: '',
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
     cardImage: '',
     cardRare: 'Normal',
     cardTrunfo: false,
@@ -20,7 +20,7 @@ class App extends React.Component {
     cards: [],
   };
 
-  validadeTextForm = () => {
+  validateTextForm = () => {
     const { cardName, cardDescription, cardImage, cardRare } = this.state;
     const textName = cardName.length > 0;
     const textDescription = cardDescription.length > 0;
@@ -31,7 +31,7 @@ class App extends React.Component {
   };
 
   validateSumAndMinMaxAttr = () => {
-    const SUM = 210;
+    const SUM = 240;
     const MAX_LENGTH = 90;
     const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
     const sumAttr = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) <= SUM;
@@ -44,7 +44,7 @@ class App extends React.Component {
   validateForm = () => {
     const validateAttr = this.validateSumAndMinMaxAttr();
     // console.log(validateAttr);
-    const validateText = this.validadeTextForm();
+    const validateText = this.validateTextForm();
     if (validateAttr && validateText) {
       this.setState({
         isSaveButtonDisabled: false,
@@ -72,7 +72,7 @@ class App extends React.Component {
     // console.log(isTrunfo);
     this.setState({
       hasTrunfo: isTrunfo,
-      cardTrunfo: false, // voltando a ser falso para que ado adicionar a carta SP a primeira vez ele não fique sempre como true e adicone todas as cartas como SP.
+      cardTrunfo: false, // voltando a ser falso para que quando adicionar a carta SP a primeira vez ele não fique sempre como true e adicone todas as cartas como SP.
     }, () => {
     //  console.log(hasTrunfo);
     });
@@ -102,13 +102,14 @@ class App extends React.Component {
     };
 
     this.setState((currentState) => ({
-      cards: [...currentState.cards, cardToAdd],
+      cards: [cardToAdd, ...currentState.cards],
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
+      isSaveButtonDisabled: false,
       cardRare: 'normal',
     }), () => {
       this.verifyTrunfo();
@@ -116,9 +117,9 @@ class App extends React.Component {
     });
   };
 
-  removeCard = (cardIndex) => {
+  handleRemoveCard = (cardNameDel) => {
     this.setState((prevState) => ({
-      cards: prevState.cards.filter((_card, index) => index !== cardIndex),
+      cards: prevState.cards.filter((card) => card.cardName !== cardNameDel),
     }), () => {
       this.verifyTrunfo();
       // console.log(this.state.cards);
@@ -174,11 +175,10 @@ class App extends React.Component {
           </section>
         </div>
 
-        <section>
-          <h2>TODAS AS CARTAS</h2>
+        <section className="container-filters-deck">
           <Filters
             cards={ cards }
-            cardRemove={ this.removeCard }
+            cardRemove={ this.handleRemoveCard }
           />
         </section>
       </>

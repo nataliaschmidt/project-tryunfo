@@ -25,7 +25,7 @@ export default class Card extends Component {
             <div className="container-img">
               {
                 cardImage
-            && <img data-testid="image-card" src={ cardImage } alt={ cardName } />
+                && <img data-testid="image-card" src={ cardImage } alt={ cardName } />
               }
             </div>
           </div>
@@ -33,14 +33,15 @@ export default class Card extends Component {
             <p data-testid="description-card">{`${cardDescription}`}</p>
           </div>
           <div className="container-attr">
-            { cardAttr1 && <p data-testid="attr1-card">{`Velocidade Média ----- ${cardAttr1}`}</p>}
-            {cardAttr2 && <p data-testid="attr2-card">{`Peso Médio ------------- ${cardAttr2}`}</p>}
-            {cardAttr3
-            && <p data-testid="attr3-card">{`Força --------------------- ${cardAttr3}`}</p>}
+            <p data-testid="attr1-card">{`Velocidade Média ----- ${cardAttr1}`}</p>
+            <p data-testid="attr2-card">{`Peso Médio ------------- ${cardAttr2}`}</p>
+
+            <p data-testid="attr3-card">{`Força --------------------- ${cardAttr3}`}</p>
             <p data-testid="rare-card" id="rare-card">{`${cardRare}`}</p>
           </div>
         </div>
-        { cardTrunfo && <span data-testid="trunfo-card" id="super-trunfo">Super Trunfo</span> }
+        {cardTrunfo
+        && <span data-testid="trunfo-card" id="super-trunfo">Super Trunfo</span>}
       </div>
     );
   }
