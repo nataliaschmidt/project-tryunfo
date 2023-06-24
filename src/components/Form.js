@@ -138,7 +138,7 @@ export default class Form extends Component {
         <button
           data-testid="save-button"
           type="submit"
-          disabled={ isSaveButtonDisabled }
+          disabled = { isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
         >
           Salvar
